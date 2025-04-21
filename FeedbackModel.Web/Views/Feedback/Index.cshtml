@@ -1,0 +1,40 @@
+﻿@model IEnumerable<FeedbackModel.Domain.Entities.Feedback>
+
+<h2>Feedback List</h2>
+
+@if (Model != null && Model.Any())
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Course</th>
+                <th>Rating</th>
+                <th>Date Submitted</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var feedback in Model)
+            {
+                <tr>
+                    <td>@feedback.StudentName</td>
+                    <td>@feedback.Course</td>
+                    <td>@feedback.Rating</td>
+                    <td>@feedback.DateSubmitted</td>
+                    <td>
+                        <a href="@Url.Action("Edit", "Feedback", new { id = feedback.Id })">Edit</a>
+                        |
+                        <a href="@Url.Action("Delete", "Feedback", new { id = feedback.Id })">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No feedback entries available.</p>
+}
+
+<a href="@Url.Action("Create", "Feedback")">Add New Feedback</a>

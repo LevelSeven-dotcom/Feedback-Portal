@@ -1,0 +1,12 @@
+﻿@model FeedbackModel.Domain.Entities.Feedback
+
+<h2>Are you sure you want to delete this feedback?</h2>
+
+<p>Student: @Model.StudentName</p>
+<p>Course: @Model.Course</p>
+<p>Rating: @Model.Rating</p>
+
+<form method="post">
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a href="@Url.Action("Index", "Feedback")" class="btn btn-secondary">Cancel</a>
+</form>

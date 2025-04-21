@@ -1,0 +1,24 @@
+﻿@model FeedbackModel.Domain.Entities.Feedback
+
+<h2>Edit Feedback</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <div>
+        <label for="StudentName">Student Name:</label>
+        <input type="text" id="StudentName" name="StudentName" value="@Model.StudentName" required />
+    </div>
+    <div>
+        <label for="Course">Course:</label>
+        <input type="text" id="Course" name="Course" value="@Model.Course" required />
+    </div>
+    <div>
+        <label for="Rating">Rating:</label>
+        <input type="number" id="Rating" name="Rating" value="@Model.Rating" min="1" max="5" required />
+    </div>
+    <div>
+        <label for="Feedback">Feedback:</label>
+        <textarea id="Feedbacks" name="Feedbacks" required>@Model.Feedbacks</textarea>
+    </div>
+    <button type="submit">Update Feedback</button>
+</form>

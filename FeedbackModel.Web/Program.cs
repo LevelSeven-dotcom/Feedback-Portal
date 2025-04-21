@@ -1,10 +1,8 @@
-using KnowledgeHubPortal.Data;
-using KnowledgeHubPortal.Domain.Repositories;
-using KnowledgeHubPortal.Web.Data;
+using FeedbackModel.Web.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace KnowledgeHubPortal.Web
+namespace FeedbackModel.Web
 {
     public class Program
     {
@@ -13,23 +11,7 @@ namespace KnowledgeHubPortal.Web
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            // IoC Registration
-            builder.Services.AddScoped<ICatagoryRepository, CatagoryRepository>();
-            builder.Services.AddScoped<IArticleRepository, ArticleRepository>();
-
-            //builder.Services.AddSingleton<KHPortalDbContext, KHPortalDbContext>();
-            //builder.Services.AddDbContext<KHPortalDbContext>();
-
-
-            //builder.Services.AddTransient <ICatagoryRepository, CatagoryRepository>();
-
-            //builder.Services.AddSingleton<ICatagoryRepository, CatagoryRepository>();
-
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-
-            builder.Services.AddDbContext<KHPortalDbContext>(options => options.UseSqlServer(connectionString));
-
-
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
@@ -60,7 +42,7 @@ namespace KnowledgeHubPortal.Web
             app.MapStaticAssets();
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}")
+                pattern: "{controller=Feedback}/{action=Index}/{id?}")
                 .WithStaticAssets();
             app.MapRazorPages()
                .WithStaticAssets();

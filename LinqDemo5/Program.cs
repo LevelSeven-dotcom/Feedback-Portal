@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            List<string> words = new List<string>() { "one", "two", "three", "four", "five", "six" }
+            List<string> words = new List<string>() { "one", "two", "three", "four", "five", "six" };
 
            // get words with 3 or less charectors
 

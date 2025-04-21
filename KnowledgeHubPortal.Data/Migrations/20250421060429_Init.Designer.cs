@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KnowledgeHubPortal.Data.Migrations
 {
     [DbContext(typeof(KHPortalDbContext))]
-    [Migration("20250417052537_Init")]
+    [Migration("20250421060429_Init")]
     partial class Init
     {
         /// <inheritdoc />

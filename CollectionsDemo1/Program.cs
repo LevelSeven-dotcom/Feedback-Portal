@@ -94,7 +94,7 @@
             numbers[index++] = x;
         }
 
-        public double Get(double x)
+        public double Get(int x)
         {
             return numbers[x];
         }

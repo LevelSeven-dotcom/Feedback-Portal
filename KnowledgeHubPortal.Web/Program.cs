@@ -16,30 +16,27 @@ namespace KnowledgeHubPortal.Web
             // IoC Registration
             builder.Services.AddScoped<ICatagoryRepository, CatagoryRepository>();
 
-            //builder.Services.AddSingleton<KHPortalDbContext, KHPortalDbContext>();
-            //builder.Services.AddDbContext<KHPortalDbContext>();
-
-
-            //builder.Services.AddTransient <ICatagoryRepository, CatagoryRepository>();
-
-            //builder.Services.AddSingleton<ICatagoryRepository, CatagoryRepository>();
-
+            // Retrieve connection string
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
-            builder.Services.AddDbContext<KHPortalDbContext>(options => options.UseSqlServer(connectionString));
-
+            // Add DbContext service for KnowledgeHubPortal.Data
+            builder.Services.AddDbContext<KHPortalDbContext>(options =>
+                options.UseSqlServer(connectionString));
 
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
+
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+            // Add Identity services
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
+            // Configure the HTTP request pipeline
             if (app.Environment.IsDevelopment())
             {
                 app.UseMigrationsEndPoint();
@@ -47,7 +44,6 @@ namespace KnowledgeHubPortal.Web
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
